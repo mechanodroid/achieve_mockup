@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+  <title>Game Center</title>
+  <script type="text/javascript" src="http://benvm:8081/socket.io/socket.io.js"></script><script type="text/javascript" src="/feather-client/lib/underscore-min.js"></script><script type="text/javascript" src="/feather-client/lib/json2.js"></script><script type="text/javascript" src="/feather-client/lib/jquery-1.7.min.js"></script><script type="text/javascript" src="/feather-client/lib/jquery.tmpl.js"></script><script type="text/javascript" src="/feather-client/lib/jquery.cookie.js"></script><script type="text/javascript" src="/feather-client/lib/inherits.js"></script><script type="text/javascript" src="/feather-client/feather.js"></script><script type="text/javascript" src="/feather-client/base-class.js"></script><script type="text/javascript" src="/feather-client/event-publisher.js"></script><script type="text/javascript" src="/feather-client/dom-event-cache.js"></script><script type="text/javascript" src="/feather-client/registry.js"></script><script type="text/javascript" src="/feather-client/semaphore.js"></script><script type="text/javascript" src="/feather-client/fsm.js"></script><script type="text/javascript" src="/feather-client/util.js"></script><script type="text/javascript" src="/feather-client/widget.js"></script><script type="text/javascript" src="/feather-client/socket.js"></script><script type="text/javascript" src="/feather-client/auth-client.js"></script><script type="text/javascript" src="/feather-client/lib/jquery.datalink.js"></script><script type="text/javascript" src="/feather-client/lib/bootstrap/js/bootstrap.min.js"></script><script type="text/javascript" src="/feather-client/ui-bootstrap.js"></script><link rel="stylesheet" type="text/css" href="/feather-client/lib/bootstrap/css/bootstrap.min.css"><link rel="stylesheet" type="text/css" href="/feather-client/lib/bootstrap/css/bootstrap-responsive.min.css"><link rel="stylesheet" type="text/css" href="/widgets/eventSim/eventSim.css"><link rel="stylesheet" type="text/css" href="/widgets/achievements/achievements.css"><script type="text/javascript" src="/widgets/eventSim/eventSim.client.js"></script><script type="text/javascript" src="/widgets/achievements/achievements.client.js"></script>
+</head>
+<body>
+ 
+
+  <div id="event1_Container" class="training_gc_eventSim"><h3>Welcome to the Achievement Event Simulator</h3>    Select an Event To emulate: <select id="event1_eventSelect">  <input id="event1_eventButton" type="button" value="eventValue"><br></select></div> 
+  <div id="achievements1_Container" class="training_gc_achievements"><p>  Achievements Scanner (Test)   <input id="achievements1_getAchievementsButton" type="button" value="getAchievements"><br></p></div> 
+<script type="text/javascript">feather.stateMachine.onceState("loadingComplete", function() {
+ feather.appOptions = {"socket.io":{"enabled":true,"port":8081,"host":"benvm"},"isSecure":false,"sessionCookie":"feather.sid","useAjaxForSystem":true};
+ feather.stateMachine.fire("ready");
+});
+feather.stateMachine.onceState("ready", function(){
+if (!feather.Widget.resources.findById('widgets/eventSim/.css')) {
+  feather.Widget.resources.add({id: 'widgets/eventSim/.css'});
+}
+
+(function() {
+training_gc.eventSim.prototype.server_populateAchievementsList = function(params, callback) {
+feather.socket.send({
+type: "rpc",
+data: {
+widgetName: "training_gc.eventSim",
+widgetPath: "widgets/eventSim/",
+widgetId: this.id,
+methodName: "populateAchievementsList",
+params: (typeof params !== "function") ? params : []
+},
+callback: (typeof params === "function") ? params : callback
+});
+};
+
+training_gc.eventSim.prototype.server_eventFindAt = function(params, callback) {
+feather.socket.send({
+type: "rpc",
+data: {
+widgetName: "training_gc.eventSim",
+widgetPath: "widgets/eventSim/",
+widgetId: this.id,
+methodName: "eventFindAt",
+params: (typeof params !== "function") ? params : []
+},
+callback: (typeof params === "function") ? params : callback
+});
+};
+
+training_gc.eventSim.prototype.server_eventLogAdd = function(params, callback) {
+feather.socket.send({
+type: "rpc",
+data: {
+widgetName: "training_gc.eventSim",
+widgetPath: "widgets/eventSim/",
+widgetId: this.id,
+methodName: "eventLogAdd",
+params: (typeof params !== "function") ? params : []
+},
+callback: (typeof params === "function") ? params : callback
+});
+};
+
+
+var widget = new training_gc.eventSim({
+id: "event1",
+myid: "event1",
+parent: null
+});
+
+
+
+
+widget.fire("init");
+
+widget.fire("ready");
+})();
+
+if (!feather.Widget.resources.findById('widgets/achievements/.css')) {
+  feather.Widget.resources.add({id: 'widgets/achievements/.css'});
+}
+
+(function() {
+training_gc.achievements.prototype.server_getNumberEvents = function(params, callback) {
+feather.socket.send({
+type: "rpc",
+data: {
+widgetName: "training_gc.achievements",
+widgetPath: "widgets/achievements/",
+widgetId: this.id,
+methodName: "getNumberEvents",
+params: (typeof params !== "function") ? params : []
+},
+callback: (typeof params === "function") ? params : callback
+});
+};
+
+
+var widget = new training_gc.achievements({
+id: "achievements1",
+myid: "achievements1",
+parent: null
+});
+
+
+widget.fire("init");
+
+widget.fire("ready");
+})();
+
+});
+feather.stateMachine.fire('loadingComplete');
+</script></body>
+</html>

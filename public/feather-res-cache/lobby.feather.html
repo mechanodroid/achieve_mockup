@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <title>Game Lobby</title>  
+  <script type="text/javascript" src="http://benvm:8081/socket.io/socket.io.js"></script><script type="text/javascript" src="/feather-client/lib/underscore-min.js"></script><script type="text/javascript" src="/feather-client/lib/json2.js"></script><script type="text/javascript" src="/feather-client/lib/jquery-1.7.min.js"></script><script type="text/javascript" src="/feather-client/lib/jquery.tmpl.js"></script><script type="text/javascript" src="/feather-client/lib/jquery.cookie.js"></script><script type="text/javascript" src="/feather-client/lib/inherits.js"></script><script type="text/javascript" src="/feather-client/feather.js"></script><script type="text/javascript" src="/feather-client/base-class.js"></script><script type="text/javascript" src="/feather-client/event-publisher.js"></script><script type="text/javascript" src="/feather-client/dom-event-cache.js"></script><script type="text/javascript" src="/feather-client/registry.js"></script><script type="text/javascript" src="/feather-client/semaphore.js"></script><script type="text/javascript" src="/feather-client/fsm.js"></script><script type="text/javascript" src="/feather-client/util.js"></script><script type="text/javascript" src="/feather-client/widget.js"></script><script type="text/javascript" src="/feather-client/socket.js"></script><script type="text/javascript" src="/feather-client/auth-client.js"></script><script type="text/javascript" src="/feather-client/lib/jquery.datalink.js"></script><script type="text/javascript" src="/feather-client/lib/bootstrap/js/bootstrap.min.js"></script><script type="text/javascript" src="/feather-client/ui-bootstrap.js"></script><link rel="stylesheet" type="text/css" href="/feather-client/lib/bootstrap/css/bootstrap.min.css"><link rel="stylesheet" type="text/css" href="/feather-client/lib/bootstrap/css/bootstrap-responsive.min.css"><link rel="stylesheet" type="text/css" href="/widgets/gameList/gameList.css"><script type="text/javascript" src="/widgets/gameList/gameList.client.js"></script>
+</head>
+<body>
+
+  <div class="container">
+    <div class="well">
+      <div class="row">
+        <div class="span12"><h1>Game Center</h1></div>
+      </div>
+    </div><div class="well">
+      <div class="row">
+        <div class="span12"><div id="gameList1_Container" class="training_gc_gameList"><h2>Games Waiting for Players</h2> <content></content> <div id="gameList1_gameLineItems"></div> <div id="gameList1_notifications"></div></div></div>
+      </div>
+    </div></div>
+
+<script type="text/javascript">feather.stateMachine.onceState("loadingComplete", function() {
+ feather.appOptions = {"socket.io":{"enabled":true,"port":8081,"host":"benvm"},"isSecure":false,"sessionCookie":"feather.sid","useAjaxForSystem":true};
+ feather.stateMachine.fire("ready");
+});
+feather.stateMachine.onceState("ready", function(){
+if (!feather.Widget.resources.findById('widgets/gameList/.css')) {
+  feather.Widget.resources.add({id: 'widgets/gameList/.css'});
+}
+
+(function() {
+
+var widget = new training_gc.gameList({
+id: "gameList1",
+myid: "gameList1",
+parent: null
+});
+
+widget.fire("init");
+
+widget.fire("ready");
+})();
+
+});
+feather.stateMachine.fire('loadingComplete');
+</script></body>
+</html>

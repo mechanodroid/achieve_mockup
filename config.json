@@ -1,0 +1,28 @@
+{
+  "socket.io": {
+    "enabled": true,
+    "host": "localhost"
+  },
+  "auth": {
+    "enabled": true,
+    "rules": {
+      "^/$": {
+        "loginRequired": true,
+        "redirectUrl": "/login"
+      },
+
+      "^/index.*": {
+        "loginRequired": true,
+        "redirectUrl": "/login"
+      }
+    }
+  },
+  "logging": {
+    "categories": {
+      "rest": "debug"
+    }
+  },
+  "ui": {
+		"provider": "bootstrap"
+	}  
+}

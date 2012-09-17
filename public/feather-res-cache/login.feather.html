@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+  <title>Login</title>
+  <script type="text/javascript" src="http://benvm:8081/socket.io/socket.io.js"></script><script type="text/javascript" src="/feather-client/lib/underscore-min.js"></script><script type="text/javascript" src="/feather-client/lib/json2.js"></script><script type="text/javascript" src="/feather-client/lib/jquery-1.7.min.js"></script><script type="text/javascript" src="/feather-client/lib/jquery.tmpl.js"></script><script type="text/javascript" src="/feather-client/lib/jquery.cookie.js"></script><script type="text/javascript" src="/feather-client/lib/inherits.js"></script><script type="text/javascript" src="/feather-client/feather.js"></script><script type="text/javascript" src="/feather-client/base-class.js"></script><script type="text/javascript" src="/feather-client/event-publisher.js"></script><script type="text/javascript" src="/feather-client/dom-event-cache.js"></script><script type="text/javascript" src="/feather-client/registry.js"></script><script type="text/javascript" src="/feather-client/semaphore.js"></script><script type="text/javascript" src="/feather-client/fsm.js"></script><script type="text/javascript" src="/feather-client/util.js"></script><script type="text/javascript" src="/feather-client/widget.js"></script><script type="text/javascript" src="/feather-client/socket.js"></script><script type="text/javascript" src="/feather-client/auth-client.js"></script><script type="text/javascript" src="/feather-client/lib/jquery.datalink.js"></script><script type="text/javascript" src="/feather-client/lib/bootstrap/js/bootstrap.min.js"></script><script type="text/javascript" src="/feather-client/ui-bootstrap.js"></script><link rel="stylesheet" type="text/css" href="/feather-client/lib/bootstrap/css/bootstrap.min.css"><link rel="stylesheet" type="text/css" href="/feather-client/lib/bootstrap/css/bootstrap-responsive.min.css">
+</head>
+<body>
+  <h1>Login by putting "?user=your_username" in the querystring</h1>
+<script type="text/javascript">feather.stateMachine.onceState("loadingComplete", function() {
+ feather.appOptions = {"socket.io":{"enabled":true,"port":8081,"host":"benvm"},"isSecure":false,"sessionCookie":"feather.sid","useAjaxForSystem":true};
+ feather.stateMachine.fire("ready");
+});
+feather.stateMachine.onceState("ready", function(){
+
+});
+feather.stateMachine.fire('loadingComplete');
+</script></body>
+</html>
