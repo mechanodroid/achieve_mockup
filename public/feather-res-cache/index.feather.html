@@ -7,8 +7,8 @@
 <body>
  
 
-  <div id="event1_Container" class="training_gc_eventSim"><h3>Welcome to the Achievement Event Simulator</h3>    Select an Event To emulate: <select id="event1_eventSelect">  <input id="event1_eventButton" type="button" value="eventValue"><br></select></div> 
-  <div id="achievements1_Container" class="training_gc_achievements"><p>  Achievements Scanner (Test)   <input id="achievements1_getAchievementsButton" type="button" value="getAchievements"><br></p></div> 
+  <div id="event1_Container" class="training_gc_eventSim"><h3>Welcome to the Achievement Event Simulator</h3>    Select an Event To emulate: <select id="event1_eventSelect">  <input id="event1_eventButton" type="button" value="Add Event"><br></select></div> 
+  <div id="achievements1_Container" class="training_gc_achievements"><h2>  Achievements Scanner (Test)</h2>   <p>   Achievement Name: <input id="achievements1_eventSelectText" type="text"><br>   <input id="achievements1_getAchievementsButton" type="button" value="Get Achievement of Achievement Name"><br></p></div> 
 <script type="text/javascript">feather.stateMachine.onceState("loadingComplete", function() {
  feather.appOptions = {"socket.io":{"enabled":true,"port":8081,"host":"benvm"},"isSecure":false,"sessionCookie":"feather.sid","useAjaxForSystem":true};
  feather.stateMachine.fire("ready");
@@ -95,12 +95,27 @@ callback: (typeof params === "function") ? params : callback
 });
 };
 
+training_gc.achievements.prototype.server_checkAchievements = function(params, callback) {
+feather.socket.send({
+type: "rpc",
+data: {
+widgetName: "training_gc.achievements",
+widgetPath: "widgets/achievements/",
+widgetId: this.id,
+methodName: "checkAchievements",
+params: (typeof params !== "function") ? params : []
+},
+callback: (typeof params === "function") ? params : callback
+});
+};
+
 
 var widget = new training_gc.achievements({
 id: "achievements1",
 myid: "achievements1",
 parent: null
 });
+
 
 
 widget.fire("init");

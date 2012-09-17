@@ -5,8 +5,11 @@ exports.getWidget = function(feather, cb) {
     name: "training_gc.achievements",
     path: "widgets/achievements/",
     prototype: {
-    	getNumberEvents: feather.Widget.serverMethod(function(_cb) {
-        achievements.numberOfEvents(_cb);
+    	getNumberEvents: feather.Widget.serverMethod(function(eventType, userId, _cb) {
+        achievements.numberOfEvents(eventType, userId, _cb);
+      }),
+      checkAchievements: feather.Widget.serverMethod(function(eventType, userId, _cb) {
+        achievements.checkAchievements(eventType, userId, _cb);
       })
     }
   });

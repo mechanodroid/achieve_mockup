@@ -42,7 +42,7 @@ feather.ns("training_gc");
           };   
 
           var valSel = me.get("#eventSelect").val();
-          feather.alert('achievement js calling eventFindAt with id ' +  valSel);
+          feather.alert('event sim js calling eventFindAt with id ' +  valSel);
 
           me.server_eventFindAt([valSel], function(args){
             feather.alert('hi I am a squid');

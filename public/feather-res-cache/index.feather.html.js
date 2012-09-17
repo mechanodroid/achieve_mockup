@@ -46,7 +46,7 @@ feather.ns("training_gc");
           };   
 
           var valSel = me.get("#eventSelect").val();
-          feather.alert('achievement js calling eventFindAt with id ' +  valSel);
+          feather.alert('event sim js calling eventFindAt with id ' +  valSel);
 
           me.server_eventFindAt([valSel], function(args){
             feather.alert('hi I am a squid');
@@ -105,9 +105,14 @@ feather.ns("training_gc");
         //when one of my buttons is clicked
         me.domEvents.bind(me.get("#getAchievementsButton"), "click", function() {
           var i = 5;     
-          me.server_getNumberEvents(function(args){
-            feather.alert('hi I am a bob');
+          var valSel = me.get("#eventSelectText").val();
+          feather.alert('achievement js calling eventFindAt with id ' +  valSel);          
+          me.server_getNumberEvents([valSel, "123"], function(args){
+            feather.alert('I found '+ args.result.documents[0] + ' events of type '+ valSel +' with a hardcoded game = PenThePenquin');
             });          
+          me.server_checkAchievements([valSel, "123"], function(args2){
+            feather.alert('I found an achievement!');
+          });
         });
       }
     }
